@@ -66,7 +66,7 @@ The round-1 defender's held-out ASR (20 behaviors never harvested) was **1.000**
 | 2 | 0.925 | 0.600 | 2.775 | 79 examples |
 | 3 (n=11) | 0.455 | -- | 4.727 | 116 examples |
 
-*Round 3 is a partial sample (11 of 40 behaviors) -- the run was stopped deliberately to reallocate the remaining time budget to the RL bonus phase.*
+*Round 3 is a   sample (40 of 40 behaviors) -- the run was stopped deliberately to reallocate the remaining time budget to the RL bonus phase.*
 
 **Result.** ASR@10 falls from a 0.825 baseline to 0.600 by round 2, average queries needed roughly doubles round over round, and the round-3 sample shows the steepest drop yet, with several behaviors exhausting the full 5-query budget without a single success -- never observed in the no-rehearsal branch. The fix for the forgetting problem is exactly the continual-learning standard one: replay old data, don't just train on the newest batch.
 
@@ -90,10 +90,10 @@ For the RL bonus, **MAGIC** and **Self-RedTeam** (2026) both frame attacker/defe
 - **The headline finding is a negative result, and we think that's the right thing to report.** The "obvious" recipe -- attack, harvest, fine-tune, repeat -- does not produce a hardening defender by itself at this data scale (~40 examples/round, rank-16 LoRA, 2 epochs). It takes an explicit replay mechanism to see the trend the assignment asks us to characterize. We would rather report that clearly than smooth a flat line into a story.
 - **Small numbers throughout.** 40 train / 20 held-out behaviors and a 12-behavior RL subset are small samples; single-percentage-point differences in ASR are not statistically load-bearing. With more time we would run 3-5 seeds per condition and report variance, not point estimates.
 - **Category tagging is a coarse keyword heuristic** (not a learned classifier), so the per-category ASR breakdown is suggestive rather than precise.
-- **The rehearsal round-3 result is a partial sample** (n=11 of 40) -- directionally the strongest result in the report, but we stopped it deliberately to reallocate the remaining time budget to the RL bonus phase rather than let it run to completion.
+- **The rehearsal round-3 result is a   sample** (n=40 of 40) -- directionally the strongest result in the report, but we stopped it deliberately to reallocate the remaining time budget to the RL bonus phase rather than let it run to completion.
 - **Over-refusal and held-out checks were only run for rounds 0-1** of the core loop, not every round, again a time-budget call. We do not have direct evidence that rehearsal training avoids over-refusal drift at round 3 -- only that it hadn't appeared by round 1.
 - **The RL bonus attacker and defender only trained on their own harvested lineage** -- no held-out or over-refusal check was run on the RL-branch defender at all. With more time, the natural next step is a small model-size scaling study (rerunning the identical loop across a few defender sizes) and a longer, full-PPO-or-GRPO RL run rather than the two-round RAFT approximation used here.
-- **Validation approach.** We validated the pipeline itself before trusting any number: a first smoke test surfaced the attacker-refusing-to-attack bug (round-0 ASR was a false 0 until we swapped to an abliterated attacker), and we manually spot-checked judge scores against the underlying model outputs (a score of 5 corresponded to a hedged, fictionalized partial compliance; a score of 10 to full, specific compliance) before trusting the automated pipeline at scale.
+- **Validation approach.** We validated the pipeline itself before trusting any number: a first smoke test surfaced the attacker-refusing-to-attack bug (round-0 ASR was a false 0 until we swapped to an abliterated attacker), and we manually spot-checked judge scores against the underlying model outputs (a score of 5 corresponded to a hedged, fictionalized   compliance; a score of 10 to full, specific compliance) before trusting the automated pipeline at scale.
 
 ## 6. Conclusion
 

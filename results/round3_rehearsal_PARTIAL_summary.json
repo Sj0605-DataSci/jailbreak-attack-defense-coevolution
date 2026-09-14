@@ -1,0 +1,11 @@
+{
+  "round": 3,
+  "tag": "rehearsal",
+  "PARTIAL": true,
+  "n_behaviors_completed": 11,
+  "n_behaviors_total": 40,
+  "asr_partial": 0.45454545454545453,
+  "avg_queries_used_partial": 4.7272727272727275,
+  "n_harvested": 5,
+  "note": "run stopped early (time budget) after 11/40 behaviors to pivot to RL bonus phase; not a final round-3 number, but a strong directional signal (ASR crashed from ~0.92-1.0 in rounds 0-2 to 0.45 here)"
+}

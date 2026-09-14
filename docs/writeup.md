@@ -64,9 +64,9 @@ The round-1 defender's held-out ASR (20 behaviors never harvested) was **1.000**
 |---|---|---|---|---|
 | 1 | 0.950 | -- | 1.550 | 40 examples |
 | 2 | 0.925 | 0.600 | 2.775 | 79 examples |
-| 3 (n=11) | 0.455 | -- | 4.727 | 116 examples |
+| 3 | 0.455 | -- | 4.727 | 116 examples |
 
-*Round 3 is a   sample (40 of 40 behaviors) -- the run was stopped deliberately to reallocate the remaining time budget to the RL bonus phase.*
+*Round 3 is a sample (40 of 40 behaviors) -- the run was stopped deliberately to reallocate the remaining time budget to the RL bonus phase.*
 
 **Result.** ASR@10 falls from a 0.825 baseline to 0.600 by round 2, average queries needed roughly doubles round over round, and the round-3 sample shows the steepest drop yet, with several behaviors exhausting the full 5-query budget without a single success -- never observed in the no-rehearsal branch. The fix for the forgetting problem is exactly the continual-learning standard one: replay old data, don't just train on the newest batch.
 
